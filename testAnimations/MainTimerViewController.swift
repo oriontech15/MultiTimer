@@ -25,6 +25,9 @@ class MainTimerViewController: UIViewController
     @IBOutlet weak var middleMinLabel: UILabel!
     @IBOutlet weak var clearAllButton: UIButton!
     @IBOutlet weak var centerView: UIView!
+    @IBOutlet weak var finishedLeftCircleView: UIView!
+    @IBOutlet weak var finishedMiddleCircleView: UIView!
+    @IBOutlet weak var finishedRightCircleView: UIView!
     
     var leftTimer = LeftTimer()
     var middleTimer = MiddleTimer()
@@ -80,8 +83,8 @@ class MainTimerViewController: UIViewController
 //        leftMinLabel.hidden = false
         leftButton.enabled = false
         leftIsDone = false
-        LeftTimerController.sharedInstance.startLeftTimer(10, radius: 150, color: ColorPalette.pYellowColor())
-        toggleTimer(10, timerType:  "left")
+        LeftTimerController.sharedInstance.startLeftTimer(3, radius: 150, color: ColorPalette.pYellowColor())
+        toggleTimer(3, timerType:  "left")
     }
     
     @IBAction func tenMinButtonTapped()
@@ -97,8 +100,8 @@ class MainTimerViewController: UIViewController
 //        middleMinLabel.hidden = false
         middleButton.enabled = false
         middleIsDone = false
-        MiddleTimerController.sharedInstance.startMiddleTimer(20, radius: 125, color: ColorPalette.pBlueColor())
-        toggleTimer(20, timerType: "middle")
+        MiddleTimerController.sharedInstance.startMiddleTimer(5, radius: 125, color: ColorPalette.pBlueColor())
+        toggleTimer(5, timerType: "middle")
     }
     
     @IBAction func twentyMinButtonTapped()
@@ -114,8 +117,8 @@ class MainTimerViewController: UIViewController
 //        rightMinLabel.hidden = false
         rightButton.enabled = false
         rightIsDone = false
-        RightTimerController.sharedInstance.startRightTimer(30, radius: 100, color: ColorPalette.pRedColor())
-        toggleTimer(30, timerType: "right")
+        RightTimerController.sharedInstance.startRightTimer(7, radius: 100, color: ColorPalette.pRedColor())
+        toggleTimer(7, timerType: "right")
     }
     
     @IBAction func clearAllButtonTapped()
@@ -239,13 +242,41 @@ class MainTimerViewController: UIViewController
             }, completion: { _ in
                 if self.clearAllButton.enabled == true
                 {
-                    self.clearAllButton.backgroundColor = .lightGrayColor()
-                }
-                else
-                {
                     self.clearAllButton.backgroundColor = .clearColor()
-                    self.clearAllButton.enabled = false
+                    
+                    if self.leftIsDone == true && self.middleIsDone == true && self.rightIsDone == true
+                    {
+                        self.shrinkProgressLines()
+                        self.clearAllButton.backgroundColor = .lightGrayColor()
+                        self.clearAllButton.enabled = false
+                    }
                 }})
+    }
+    
+    func shrinkProgressLines()
+    {
+        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+
+            self.finishedLeftCircleView.bounds = CGRectMake(self.leftTimerView.center.x, self.leftTimerView.center.y, 1, 1)
+            self.finishedLeftCircleView.layer.cornerRadius = self.finishedLeftCircleView.bounds.height / 2
+            
+            self.finishedMiddleCircleView.bounds = CGRectMake(self.middleTimerView.center.x, self.middleTimerView.center.y, 1, 1)
+            self.finishedMiddleCircleView.layer.cornerRadius = self.finishedMiddleCircleView.bounds.height / 2
+            
+            self.finishedRightCircleView.bounds = CGRectMake(self.rightTimerView.center.x, self.rightTimerView.center.y, 1, 1)
+            self.finishedRightCircleView.layer.cornerRadius = self.finishedRightCircleView.bounds.height / 2
+            
+            }, completion: { _ in
+                
+                self.finishedLeftCircleView.bounds = CGRectMake(self.leftTimerView.center.x, self.leftTimerView.center.y, 300, 300)
+                
+                self.finishedMiddleCircleView.bounds = CGRectMake(self.middleTimerView.center.x, self.middleTimerView.center.y, 250, 250)
+                
+                self.finishedRightCircleView.bounds = CGRectMake(self.rightTimerView.center.x, self.rightTimerView.center.y, 200, 200)
+                
+                self.finishedLeftCircleView.hidden = true
+                self.finishedMiddleCircleView.hidden = true
+                self.finishedRightCircleView.hidden = true})
     }
     
     
@@ -367,33 +398,66 @@ class MainTimerViewController: UIViewController
     func leftTimerComplete()
     {
         leftButton.backgroundColor = ColorPalette.pYellowColor()
+        
+        finishedLeftCircleView.hidden = false
+        finishedLeftCircleView.backgroundColor = .clearColor()
+        finishedLeftCircleView.layer.cornerRadius = finishedLeftCircleView.bounds.height / 2
+        finishedLeftCircleView.layer.borderColor = ColorPalette.pYellowColor().CGColor
+        finishedLeftCircleView.layer.borderWidth = 5
+        
+        LeftTimerController.sharedInstance.leftTimerProgressLine.removeFromSuperlayer()
+        
         leftDismissAnimation(leftMinLabel.center.x, y: leftMinLabel.center.y)
+        
         leftTimerLabel.text = "Start"
         leftTimerLabel.hidden = true
 //        leftMinLabel.hidden = true
         leftButton.enabled = true
+        
         leftIsDone = true
     }
     
     func middleTimerComplete()
     {
         middleButton.backgroundColor = ColorPalette.pBlueColor()
+        
+        finishedMiddleCircleView.hidden = false
+        finishedMiddleCircleView.backgroundColor = .clearColor()
+        finishedMiddleCircleView.layer.cornerRadius = finishedMiddleCircleView.bounds.height / 2
+        finishedMiddleCircleView.layer.borderColor = ColorPalette.pBlueColor().CGColor
+        finishedMiddleCircleView.layer.borderWidth = 5
+        
+        MiddleTimerController.sharedInstance.middleTimerProgressLine.removeFromSuperlayer()
+        
         middleDismissAnimation(middleMinLabel.center.x, y: middleMinLabel.center.y)
+        
         middleTimerLabel.text = "Start"
         middleTimerLabel.hidden = true
 //        middleMinLabel.hidden = true
         middleButton.enabled = true
+        
         middleIsDone = true
     }
     
     func rightTimerComplete()
     {
         rightButton.backgroundColor = ColorPalette.pRedColor()
+        
+        finishedRightCircleView.hidden = false
+        finishedRightCircleView.backgroundColor = .clearColor()
+        finishedRightCircleView.layer.cornerRadius = finishedRightCircleView.bounds.height / 2
+        finishedRightCircleView.layer.borderColor = ColorPalette.pRedColor().CGColor
+        finishedRightCircleView.layer.borderWidth = 5
+        
+        RightTimerController.sharedInstance.rightTimerProgressLine.removeFromSuperlayer()
+        
         rightDismissAnimation(rightMinLabel.center.x, y: rightMinLabel.center.y)
+        
         rightTimerLabel.text = "Start"
         rightTimerLabel.hidden = true
 //        rightMinLabel.hidden = true
         rightButton.enabled = true
+        
         rightIsDone = true
     }
     

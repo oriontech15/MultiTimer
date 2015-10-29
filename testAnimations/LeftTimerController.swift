@@ -40,8 +40,7 @@ class LeftTimerController: NSObject
         let animateStrokeEnd = CABasicAnimation(keyPath: "strokeEnd")
         animateStrokeEnd.duration = time
         animateStrokeEnd.fromValue = 0.0
-        animateStrokeEnd.toValue = 1.0
-        animateStrokeEnd.removedOnCompletion = true
+        animateStrokeEnd.toValue = time / time
         
         // add the curve to the screen
         MainTimerViewController.leftView.layer.addSublayer(leftTimerProgressLine)
