@@ -7,21 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB1CD80F1BE09E6100EAF0B2 /* LeftTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD80E1BE09E6100EAF0B2 /* LeftTimer.swift */; };
+		DB1CD8111BE09E8A00EAF0B2 /* MiddleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD8101BE09E8A00EAF0B2 /* MiddleTimer.swift */; };
+		DB1CD8191BE1788300EAF0B2 /* LeftTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD8181BE1788300EAF0B2 /* LeftTimerController.swift */; };
+		DB1CD81B1BE1789300EAF0B2 /* MiddleTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD81A1BE1789300EAF0B2 /* MiddleTimerController.swift */; };
+		DB1CD81D1BE178A000EAF0B2 /* RightTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD81C1BE178A000EAF0B2 /* RightTimerController.swift */; };
+		DB6F9B031BE07D2B00D3E03B /* RightTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F9B021BE07D2B00D3E03B /* RightTimer.swift */; };
+		DB822C5E1BE0035B0002E5F7 /* ColorPaletteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB822C5D1BE0035B0002E5F7 /* ColorPaletteViewController.swift */; };
 		DBE1A1341BDECA0E00D16A01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A1331BDECA0E00D16A01 /* AppDelegate.swift */; };
-		DBE1A1361BDECA0E00D16A01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A1351BDECA0E00D16A01 /* ViewController.swift */; };
+		DBE1A1361BDECA0E00D16A01 /* MainTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A1351BDECA0E00D16A01 /* MainTimerViewController.swift */; };
 		DBE1A1391BDECA0E00D16A01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE1A1371BDECA0E00D16A01 /* Main.storyboard */; };
 		DBE1A13B1BDECA0E00D16A01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBE1A13A1BDECA0E00D16A01 /* Assets.xcassets */; };
 		DBE1A13E1BDECA0E00D16A01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE1A13C1BDECA0E00D16A01 /* LaunchScreen.storyboard */; };
+		DBF9693C1BDFE4FB00F63D08 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9693B1BDFE4FB00F63D08 /* ColorPalette.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB1CD80E1BE09E6100EAF0B2 /* LeftTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftTimer.swift; path = ../LeftTimer.swift; sourceTree = "<group>"; };
+		DB1CD8101BE09E8A00EAF0B2 /* MiddleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleTimer.swift; sourceTree = "<group>"; };
+		DB1CD8181BE1788300EAF0B2 /* LeftTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTimerController.swift; sourceTree = "<group>"; };
+		DB1CD81A1BE1789300EAF0B2 /* MiddleTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleTimerController.swift; sourceTree = "<group>"; };
+		DB1CD81C1BE178A000EAF0B2 /* RightTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTimerController.swift; sourceTree = "<group>"; };
+		DB6F9B021BE07D2B00D3E03B /* RightTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTimer.swift; sourceTree = "<group>"; };
+		DB822C5D1BE0035B0002E5F7 /* ColorPaletteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPaletteViewController.swift; sourceTree = "<group>"; };
 		DBE1A1301BDECA0E00D16A01 /* testAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE1A1331BDECA0E00D16A01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DBE1A1351BDECA0E00D16A01 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DBE1A1351BDECA0E00D16A01 /* MainTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimerViewController.swift; sourceTree = "<group>"; };
 		DBE1A1381BDECA0E00D16A01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBE1A13A1BDECA0E00D16A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBE1A13D1BDECA0E00D16A01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBE1A13F1BDECA0E00D16A01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBF9693B1BDFE4FB00F63D08 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +51,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB1CD81E1BE1AC3100EAF0B2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB1CD80E1BE09E6100EAF0B2 /* LeftTimer.swift */,
+				DB1CD8101BE09E8A00EAF0B2 /* MiddleTimer.swift */,
+				DB6F9B021BE07D2B00D3E03B /* RightTimer.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DB1CD81F1BE1AC3C00EAF0B2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DB1CD8181BE1788300EAF0B2 /* LeftTimerController.swift */,
+				DB1CD81A1BE1789300EAF0B2 /* MiddleTimerController.swift */,
+				DB1CD81C1BE178A000EAF0B2 /* RightTimerController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DB1CD8201BE1AC4B00EAF0B2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DBE1A1371BDECA0E00D16A01 /* Main.storyboard */,
+				DBE1A13C1BDECA0E00D16A01 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		DB1CD8211BE1AC6A00EAF0B2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DBE1A1351BDECA0E00D16A01 /* MainTimerViewController.swift */,
+				DB822C5D1BE0035B0002E5F7 /* ColorPaletteViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DB1CD8221BE1AC8100EAF0B2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DBF9693B1BDFE4FB00F63D08 /* ColorPalette.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		DBE1A1271BDECA0E00D16A01 = {
 			isa = PBXGroup;
 			children = (
@@ -55,10 +117,12 @@
 			isa = PBXGroup;
 			children = (
 				DBE1A1331BDECA0E00D16A01 /* AppDelegate.swift */,
-				DBE1A1351BDECA0E00D16A01 /* ViewController.swift */,
-				DBE1A1371BDECA0E00D16A01 /* Main.storyboard */,
+				DB1CD8201BE1AC4B00EAF0B2 /* Storyboards */,
+				DB1CD81E1BE1AC3100EAF0B2 /* Model */,
+				DB1CD8211BE1AC6A00EAF0B2 /* ViewControllers */,
+				DB1CD81F1BE1AC3C00EAF0B2 /* Controllers */,
+				DB1CD8221BE1AC8100EAF0B2 /* UI */,
 				DBE1A13A1BDECA0E00D16A01 /* Assets.xcassets */,
-				DBE1A13C1BDECA0E00D16A01 /* LaunchScreen.storyboard */,
 				DBE1A13F1BDECA0E00D16A01 /* Info.plist */,
 			);
 			path = testAnimations;
@@ -135,8 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE1A1361BDECA0E00D16A01 /* ViewController.swift in Sources */,
+				DB822C5E1BE0035B0002E5F7 /* ColorPaletteViewController.swift in Sources */,
+				DBE1A1361BDECA0E00D16A01 /* MainTimerViewController.swift in Sources */,
+				DB1CD80F1BE09E6100EAF0B2 /* LeftTimer.swift in Sources */,
+				DB1CD8191BE1788300EAF0B2 /* LeftTimerController.swift in Sources */,
 				DBE1A1341BDECA0E00D16A01 /* AppDelegate.swift in Sources */,
+				DB1CD81D1BE178A000EAF0B2 /* RightTimerController.swift in Sources */,
+				DB1CD8111BE09E8A00EAF0B2 /* MiddleTimer.swift in Sources */,
+				DB6F9B031BE07D2B00D3E03B /* RightTimer.swift in Sources */,
+				DBF9693C1BDFE4FB00F63D08 /* ColorPalette.swift in Sources */,
+				DB1CD81B1BE1789300EAF0B2 /* MiddleTimerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +358,7 @@
 				DBE1A1441BDECA0E00D16A01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
