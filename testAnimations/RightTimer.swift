@@ -29,9 +29,15 @@ class RightTimer: NSObject {
         get {
             let totalSeconds = Int(self.seconds)
             
+//            print("right \(totalSeconds)")
+            
             let hours = totalSeconds / 3600
             let minutes = (totalSeconds - (hours * 3600)) / 60
             let seconds = totalSeconds - (hours * 3600) - (minutes * 60)
+            
+//            print("right \(hours)")
+//            print("right \(minutes)")
+//            print("right \(seconds)")
             
             var hoursString = ""
             if hours > 0 {

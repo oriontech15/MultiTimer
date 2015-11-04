@@ -52,5 +52,6 @@ class LeftTimerController: NSObject
         {
             leftTimerProgressLine.strokeColor = UIColor.redColor().CGColor
         }
+        
     }
 }

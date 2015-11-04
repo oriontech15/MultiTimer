@@ -28,9 +28,15 @@ class MiddleTimer: NSObject {
         get {
             let totalSeconds = Int(self.seconds)
             
+            //print("middle \(totalSeconds)")
+            
             let hours = totalSeconds / 3600
             let minutes = (totalSeconds - (hours * 3600)) / 60
             let seconds = totalSeconds - (hours * 3600) - (minutes * 60)
+            
+//            print("middle \(hours)")
+//            print("middle \(minutes)")
+//            print("middle \(seconds)")
             
             var hoursString = ""
             if hours > 0 {

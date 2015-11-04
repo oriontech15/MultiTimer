@@ -29,9 +29,15 @@ class LeftTimer: NSObject {
         get {
             let totalSeconds = Int(self.seconds)
             
+            //print("left \(totalSeconds)")
+            
             let hours = totalSeconds / 3600
             let minutes = (totalSeconds - (hours * 3600)) / 60
             let seconds = totalSeconds - (hours * 3600) - (minutes * 60)
+            
+//            print("left \(hours)")
+//            print("left \(minutes)")
+//            print("left \(seconds)")
             
             var hoursString = ""
             if hours > 0 {
@@ -103,9 +109,13 @@ class LeftTimer: NSObject {
         }
     }
     
-    func setTimer(seconds: NSTimeInterval)
+    func setTimer(seconds: NSTimeInterval) -> NSTimeInterval
     {
         self.seconds = seconds
+        
+        print("t \(self.seconds)")
+        
+        return self.seconds
     }
     
     func startTimer()
