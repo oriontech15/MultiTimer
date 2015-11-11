@@ -13,17 +13,29 @@ class TimerSettingsViewController: UIViewController {
     @IBOutlet var leftPickerView: UIView!
     @IBOutlet var middlePickerView: UIView!
     @IBOutlet var rightPickerView: UIView!
+    
+    @IBOutlet weak var middleTitleTextField: UITextField!
+    @IBOutlet weak var leftTitleTextField: UITextField!
+    @IBOutlet weak var rightTitleTextField: UITextField!
+    
     @IBOutlet weak var leftPicker: UIPickerView!
     @IBOutlet weak var rightPicker: UIPickerView!
     @IBOutlet weak var middlePicker: UIPickerView!
+    
     @IBOutlet weak var leftTimerButton: UIButton!
     @IBOutlet weak var middleTimerButton: UIButton!
     @IBOutlet weak var rightTimerButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     
-    var seconds: [Int] = []
-    var minutes: [Int] = []
-    var hours: [Int] = []
+    @IBOutlet weak var leftMainTitleLabel: UILabel!
+    @IBOutlet weak var middleMainTitleLabel: UILabel!
+    @IBOutlet weak var rightMainTitleLabel: UILabel!
+    
+    @IBOutlet weak var leftTimerTitleLabel: UILabel!
+    @IBOutlet weak var middleTimerTitleLabel: UILabel!
+    @IBOutlet weak var rightTimerTitleLabel: UILabel!
+    
+    var blurredBackdropView: UIVisualEffectView!
     
     var delegate: GetTimesDelegate?
     
@@ -31,26 +43,41 @@ class TimerSettingsViewController: UIViewController {
     var middleTimerText = "Set Me"
     var rightTimerText = "Set Me"
     
-    let leftTimer = LeftTimer()
-    let middleTimer = MiddleTimer()
-    let rightTimer = RightTimer()
+    var leftDefaultTitle = "Yellow Timer"
+    var middleDefaultTitle = "Blue Timer"
+    var rightDefaultTitle = "Red Timer"
+    
+    var leftTitle = ""
+    var middleTitle = ""
+    var rightTitle = ""
+    
+//    let leftTimer = LeftTimer()
+//    let middleTimer = MiddleTimer()
+//    let rightTimer = RightTimer()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        leftTimerTitleLabel.text = leftTitle
+        middleTimerTitleLabel.text = middleTitle
+        rightTimerTitleLabel.text = rightTitle
+        
+        leftMainTitleLabel.text = leftTitle
+        middleMainTitleLabel.text = middleTitle
+        rightMainTitleLabel.text = rightTitle
+        
         doneButton.layer.cornerRadius = 8
         
         leftTimerButton.setTitle(leftTimerText, forState: .Normal)
+        leftPicker.layer.borderWidth = 1
+        leftPicker.layer.borderColor = ColorPalette.pYellowColor().CGColor
         middleTimerButton.setTitle(middleTimerText, forState: .Normal)
+        middlePicker.layer.borderWidth = 1
+        middlePicker.layer.borderColor = ColorPalette.pBlueColor().CGColor
         rightTimerButton.setTitle(rightTimerText, forState: .Normal)
-        
-        seconds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
-        
-        minutes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
-        
-        hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-        
+        rightPicker.layer.borderWidth = 1
+        rightPicker.layer.borderColor = ColorPalette.pRedColor().CGColor
     }
     
     override func shouldAutorotate() -> Bool {
@@ -61,51 +88,66 @@ class TimerSettingsViewController: UIViewController {
         return UIInterfaceOrientationMask.Portrait
     }
     
-    func passLeftTimeBackToMain(left: Int)
+    func passLeftTimeBackToMain(left: Int, title: String? = "")
     {
-        self.delegate?.sendLeftValue(left)
+        self.delegate?.sendLeftValue(left, title: title)
     }
     
-    func passMiddleTimeBackToMain(middle: Int)
+    func passMiddleTimeBackToMain(middle: Int, title: String? = "")
     {
-        self.delegate?.sendMiddleValue(middle)
+        self.delegate?.sendMiddleValue(middle, title: title)
     }
     
-    func passRightTimeBackToMain(right: Int)
+    func passRightTimeBackToMain(right: Int, title: String? = "")
     {
-        self.delegate?.sendRightValue(right)
+        self.delegate?.sendRightValue(right, title: title)
+    }
+    
+    @IBAction func setDefaultsButtonTapped()
+    {
+        let leftHours = leftPicker.selectedRowInComponent(0)
+        let leftMinutes = leftPicker.selectedRowInComponent(2) + (leftHours * 60)
+        let totalSecondsForLeftTimer = NSTimeInterval(leftMinutes * 60)
+        
+        let middleHours = middlePicker.selectedRowInComponent(0)
+        let middleMinutes = middlePicker.selectedRowInComponent(2) + (middleHours * 60)
+        let totalSecondsForMiddleTimer = NSTimeInterval(middleMinutes * 60)
+        
+        let rightHours = rightPicker.selectedRowInComponent(0)
+        let rightMinutes = rightPicker.selectedRowInComponent(2) + (rightHours * 60)
+        let totalSecondsForRightTimer = NSTimeInterval(rightMinutes * 60)
+        
+        print("leftDefault \(totalSecondsForLeftTimer)")
+        print("middleDefault \(totalSecondsForMiddleTimer)")
+        print("rightDefault \(totalSecondsForRightTimer)")
     }
     
     @IBAction func leftTimerButtonTapped()
     {
-        self.view.bringSubviewToFront(leftPickerView)
-        self.leftPickerView.backgroundColor = ColorPalette.pYellowColor()
-        self.leftPickerView.layer.cornerRadius = 10
+        self.leftPickerView.backgroundColor = ColorPalette.clearColor()
         self.leftPickerView.hidden = false
+        
+        addBlurredBackgroundViewToView()
+        self.view.bringSubviewToFront(leftPickerView)
     }
     
     @IBAction func middleTimerButtonTapped()
     {
-        self.view.bringSubviewToFront(middlePickerView)
-        self.middlePickerView.backgroundColor = ColorPalette.pBlueColor()
-        self.middlePickerView.layer.cornerRadius = 10
+        self.middlePickerView.backgroundColor = ColorPalette.clearColor()
         self.middlePickerView.hidden = false
+        
+        addBlurredBackgroundViewToView()
+        self.view.bringSubviewToFront(middlePickerView)
     }
     
     @IBAction func rightTimerButtonTapped()
     {
-        self.view.bringSubviewToFront(rightPickerView)
-        self.rightPickerView.backgroundColor = ColorPalette.pRedColor()
-        self.rightPickerView.layer.cornerRadius = 10
+        self.rightPickerView.backgroundColor = ColorPalette.clearColor()
         self.rightPickerView.hidden = false
+        
+        addBlurredBackgroundViewToView()
+        self.view.bringSubviewToFront(rightPickerView)
     }
-    
-//    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController)
-//    {
-//        let mainView = unwindSegue.destinationViewController as! MainTimerViewController
-//        
-//        mainView.leftText = "\(getLeftTime())"
-//    }
     
     @IBAction func doneButtonTapped(sender: AnyObject)
     {
@@ -153,9 +195,22 @@ class TimerSettingsViewController: UIViewController {
         //print("o \(middleTotalSeconds)")
         
         middleTimerText = hoursString + minutesString + secondsString
-        passMiddleTimeBackToMain(middleTotalSeconds)
+        
+        if middleTitleTextField.text != ""
+        {
+            middleMainTitleLabel.text = middleTitleTextField.text
+            middleTitle = middleTitleTextField.text!
+        }
+        else
+        {
+            middleTitle = middleDefaultTitle
+            middleMainTitleLabel.text = "Blue Timer"
+        }
+        
+        passMiddleTimeBackToMain(middleTotalSeconds, title: middleTitle)
         
         middlePickerView.hidden = true
+        self.blurredBackdropView.removeFromSuperview()
     }
     
     @IBAction func leftSetButtonTapped(sender: AnyObject)
@@ -199,8 +254,22 @@ class TimerSettingsViewController: UIViewController {
         //print("o \(leftTotalSeconds)")
         
         leftTimerText = hoursString + minutesString + secondsString
-        passLeftTimeBackToMain(leftTotalSeconds)
+        
+        if leftTitleTextField.text != ""
+        {
+            leftMainTitleLabel.text = leftTitleTextField.text
+            leftTitle = leftTitleTextField.text!
+        }
+        else
+        {
+            leftTitle = leftDefaultTitle
+            leftMainTitleLabel.text = "Yellow Timer"
+        }
+        
+        passLeftTimeBackToMain(leftTotalSeconds, title: leftTitle)
         leftPickerView.hidden = true
+        
+        self.blurredBackdropView.removeFromSuperview()
     }
     
     @IBAction func rightSetButtonTapped(sender: AnyObject)
@@ -244,9 +313,23 @@ class TimerSettingsViewController: UIViewController {
         //print("o \(rightTotalSeconds)")
         
         rightTimerText = hoursString + minutesString + secondsString
-        passRightTimeBackToMain(rightTotalSeconds)
+        
+        if rightTitleTextField.text != ""
+        {
+            rightMainTitleLabel.text = rightTitleTextField.text
+            rightTitle = rightTitleTextField.text!
+        }
+        else
+        {
+            rightTitle = rightDefaultTitle
+            rightMainTitleLabel.text = "Red Timer"
+        }
+        
+        passRightTimeBackToMain(rightTotalSeconds, title: rightTitle)
         
         rightPickerView.hidden = true
+        
+        self.blurredBackdropView.removeFromSuperview()
     }
     
     func getLeftTime() -> NSTimeInterval
@@ -283,92 +366,51 @@ class TimerSettingsViewController: UIViewController {
     }
     
     
+    func addBlurredBackgroundViewToView()
+    {
+        let blurEffect = UIBlurEffect(style: .Dark)
+        let blurredBackdropView = UIVisualEffectView(effect: blurEffect)
+
+        blurredBackdropView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        blurredBackdropView.frame = self.view.bounds
+        self.view.addSubview(blurredBackdropView)
+        self.blurredBackdropView = blurredBackdropView
+    }
+    
 }
 
-extension TimerSettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate
+extension TimerSettingsViewController: UITextFieldDelegate
 {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 6
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component
-        {
-        case 0:
-            return 24
-            
-        case 1:
-            return 1
-            
-        case 2:
-            return 60
-            
-        case 3:
-            return 1
-            
-        case 4:
-            return 60
-            
-        case 5:
-            return 1
-            
-        default:
-            return 0
-        }
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        switch component
+        if leftTitleTextField.text != ""
         {
-        case 0:
-            return String(hours[row])
-            
-        case 1:
-            return "HR"
-            
-        case 2:
-            return String(minutes[row])
-            
-        case 3:
-            return "MIN"
-            
-        case 4:
-            return String(seconds[row])
-            
-        case 5:
-            return "SEC"
-            
-        default:
-            return nil
+            leftTimerTitleLabel.text = leftTitleTextField.text
+        }
+        else
+        {
+            leftTimerTitleLabel.text = "Yellow Timer"
         }
         
-    }
-
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString?
-    {
-        switch component
+        if middleTitleTextField.text != ""
         {
-        case 0:
-            return NSAttributedString(string: String(hours[row]), attributes: [NSForegroundColorAttributeName:UIColor.darkGrayColor()])
-            
-        case 1:
-            return NSAttributedString(string: "H", attributes: [NSForegroundColorAttributeName:UIColor.darkGrayColor()])
-            
-        case 2:
-            return NSAttributedString(string: String(minutes[row]), attributes: [NSForegroundColorAttributeName:UIColor.darkGrayColor()])
-            
-        case 3:
-            return NSAttributedString(string: "M", attributes: [NSForegroundColorAttributeName:UIColor.darkGrayColor()])
-            
-        case 4:
-            return NSAttributedString(string: String(seconds[row]), attributes: [NSForegroundColorAttributeName:UIColor.darkGrayColor()])
-            
-        case 5:
-            return NSAttributedString(string: "S", attributes: [NSForegroundColorAttributeName:UIColor.darkGrayColor()])
-            
-        default:
-            return nil
+            middleTimerTitleLabel.text = middleTitleTextField.text
         }
+        else
+        {
+            middleTimerTitleLabel.text = "Blue Timer"
+        }
+        
+        if rightTitleTextField.text != ""
+        {
+            rightTimerTitleLabel.text = rightTitleTextField.text
+        }
+        else
+        {
+            rightTimerTitleLabel.text = "Red Timer"
+        }
+        
+        textField.resignFirstResponder()
+        return true
     }
 }

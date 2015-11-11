@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeftTimer: NSObject {
+class LeftTimer: NSObject, NSCoding {
     
     static let notificationSecondTick = "TimerNotificationSecondTick"
     static let notificationComplete = "TimerNotificationComplete"
@@ -23,6 +23,24 @@ class LeftTimer: NSObject {
                 return false
             }
         }
+    }
+    
+    init(seconds: NSTimeInterval = NSTimeInterval(300))
+    {
+        self.seconds = seconds
+    }
+    
+    convenience required init?(coder aDecoder: NSCoder)
+    {
+        guard let seconds = aDecoder.decodeObjectForKey("leftSeconds") as? NSTimeInterval
+            else { return nil }
+        
+        self.init(seconds: seconds)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(self.seconds, forKey: "leftSeconds")
     }
     
     var string: String {

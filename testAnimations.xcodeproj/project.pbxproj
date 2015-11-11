@@ -13,6 +13,9 @@
 		DB1CD81B1BE1789300EAF0B2 /* MiddleTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD81A1BE1789300EAF0B2 /* MiddleTimerController.swift */; };
 		DB1CD81D1BE178A000EAF0B2 /* RightTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CD81C1BE178A000EAF0B2 /* RightTimerController.swift */; };
 		DB2970471BE415AB0089D4D3 /* TimerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2970461BE415AB0089D4D3 /* TimerSettingsViewController.swift */; };
+		DB4E3D051BF29F4100A460EB /* LeftPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4E3D041BF29F4100A460EB /* LeftPickerViewDataSource.swift */; };
+		DB4E3D0B1BF2A0F100A460EB /* MiddlePickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4E3D0A1BF2A0F100A460EB /* MiddlePickerViewDataSource.swift */; };
+		DB4E3D0D1BF2A10800A460EB /* RightPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4E3D0C1BF2A10800A460EB /* RightPickerViewDataSource.swift */; };
 		DB6F9B031BE07D2B00D3E03B /* RightTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F9B021BE07D2B00D3E03B /* RightTimer.swift */; };
 		DB822C5E1BE0035B0002E5F7 /* ColorPaletteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB822C5D1BE0035B0002E5F7 /* ColorPaletteViewController.swift */; };
 		DBE1A1341BDECA0E00D16A01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1A1331BDECA0E00D16A01 /* AppDelegate.swift */; };
@@ -30,6 +33,9 @@
 		DB1CD81A1BE1789300EAF0B2 /* MiddleTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddleTimerController.swift; sourceTree = "<group>"; };
 		DB1CD81C1BE178A000EAF0B2 /* RightTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTimerController.swift; sourceTree = "<group>"; };
 		DB2970461BE415AB0089D4D3 /* TimerSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerSettingsViewController.swift; sourceTree = "<group>"; };
+		DB4E3D041BF29F4100A460EB /* LeftPickerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftPickerViewDataSource.swift; path = ../LeftPickerViewDataSource.swift; sourceTree = "<group>"; };
+		DB4E3D0A1BF2A0F100A460EB /* MiddlePickerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlePickerViewDataSource.swift; sourceTree = "<group>"; };
+		DB4E3D0C1BF2A10800A460EB /* RightPickerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightPickerViewDataSource.swift; sourceTree = "<group>"; };
 		DB6F9B021BE07D2B00D3E03B /* RightTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTimer.swift; sourceTree = "<group>"; };
 		DB822C5D1BE0035B0002E5F7 /* ColorPaletteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPaletteViewController.swift; sourceTree = "<group>"; };
 		DBE1A1301BDECA0E00D16A01 /* testAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +91,9 @@
 		DB1CD8211BE1AC6A00EAF0B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DB4E3D041BF29F4100A460EB /* LeftPickerViewDataSource.swift */,
+				DB4E3D0A1BF2A0F100A460EB /* MiddlePickerViewDataSource.swift */,
+				DB4E3D0C1BF2A10800A460EB /* RightPickerViewDataSource.swift */,
 				DBE1A1351BDECA0E00D16A01 /* MainTimerViewController.swift */,
 				DB822C5D1BE0035B0002E5F7 /* ColorPaletteViewController.swift */,
 				DB2970461BE415AB0089D4D3 /* TimerSettingsViewController.swift */,
@@ -202,10 +211,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB4E3D051BF29F4100A460EB /* LeftPickerViewDataSource.swift in Sources */,
 				DB822C5E1BE0035B0002E5F7 /* ColorPaletteViewController.swift in Sources */,
 				DBE1A1361BDECA0E00D16A01 /* MainTimerViewController.swift in Sources */,
+				DB4E3D0B1BF2A0F100A460EB /* MiddlePickerViewDataSource.swift in Sources */,
 				DB1CD80F1BE09E6100EAF0B2 /* LeftTimer.swift in Sources */,
 				DB1CD8191BE1788300EAF0B2 /* LeftTimerController.swift in Sources */,
+				DB4E3D0D1BF2A10800A460EB /* RightPickerViewDataSource.swift in Sources */,
 				DBE1A1341BDECA0E00D16A01 /* AppDelegate.swift in Sources */,
 				DB2970471BE415AB0089D4D3 /* TimerSettingsViewController.swift in Sources */,
 				DB1CD81D1BE178A000EAF0B2 /* RightTimerController.swift in Sources */,

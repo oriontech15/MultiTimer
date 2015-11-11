@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MiddleTimer: NSObject {
+class MiddleTimer: NSObject, NSCoding {
     
     static let notificationSecondTick = "TimerNotificationSecondTick"
     static let notificationComplete = "TimerNotificationComplete"
@@ -24,6 +24,25 @@ class MiddleTimer: NSObject {
             }
         }
     }
+    
+    init(seconds: NSTimeInterval? = NSTimeInterval(600))
+    {
+        self.seconds = seconds!
+    }
+    
+    convenience required init?(coder aDecoder: NSCoder)
+    {
+        guard let seconds = aDecoder.decodeObjectForKey("middleSeconds") as? NSTimeInterval
+            else { return nil }
+        
+        self.init(seconds: seconds)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(self.seconds, forKey: "middleSeconds")
+    }
+    
     var string: String {
         get {
             let totalSeconds = Int(self.seconds)

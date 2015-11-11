@@ -10,9 +10,9 @@ import UIKit
 
 protocol GetTimesDelegate
 {
-    func sendLeftValue(left: Int)
-    func sendMiddleValue(middle: Int)
-    func sendRightValue(right: Int)
+    func sendLeftValue(left: Int, title: String?)
+    func sendMiddleValue(middle: Int, title: String?)
+    func sendRightValue(right: Int, title: String?)
 }
 
 class MainTimerViewController: UIViewController, GetTimesDelegate
@@ -25,18 +25,29 @@ class MainTimerViewController: UIViewController, GetTimesDelegate
     @IBOutlet weak var leftTimerLabel: UILabel!
     @IBOutlet weak var middleTimerLabel: UILabel!
     @IBOutlet weak var rightTimerLabel: UILabel!
+    
     @IBOutlet weak var colorPaletteButton: UIButton!
+    
     @IBOutlet weak var leftTimerView: UIView!
     @IBOutlet weak var middleTimerView: UIView!
     @IBOutlet weak var rightTimerView: UIView!
+    
+    @IBOutlet weak var leftTitleLabel: UILabel!
+    @IBOutlet weak var middleTitleLabel: UILabel!
+    @IBOutlet weak var rightTitleLabel: UILabel!
+    
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var middleButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
+    
     @IBOutlet weak var leftMinLabel: UILabel!
     @IBOutlet weak var rightMinLabel: UILabel!
     @IBOutlet weak var middleMinLabel: UILabel!
+    
     @IBOutlet weak var clearAllButton: UIButton!
+    
     @IBOutlet weak var centerView: UIView!
+    
     @IBOutlet weak var finishedLeftCircleView: UIView!
     @IBOutlet weak var finishedMiddleCircleView: UIView!
     @IBOutlet weak var finishedRightCircleView: UIView!
@@ -76,6 +87,10 @@ class MainTimerViewController: UIViewController, GetTimesDelegate
         clearAllButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         clearAllButton.layer.borderWidth = 3
         clearAllButton.layer.cornerRadius = clearAllButton.bounds.height / 2
+        
+        leftTitleLabel.adjustsFontSizeToFitWidth = true
+        middleTitleLabel.adjustsFontSizeToFitWidth = true
+        rightTitleLabel.adjustsFontSizeToFitWidth = true
         
         /********************/
         /*  N.C. OBSERVERS  */
@@ -408,21 +423,31 @@ class MainTimerViewController: UIViewController, GetTimesDelegate
             timerSettingsViewController.middleTimerText = middleString
             timerSettingsViewController.rightTimerText = rightString
             
+            timerSettingsViewController.leftTitle = leftTitleLabel.text!
+            timerSettingsViewController.middleTitle = middleTitleLabel.text!
+            timerSettingsViewController.rightTitle = rightTitleLabel.text!
+            
             timerSettingsViewController.delegate = self
         }
     }
     
-    func sendLeftValue(left: Int) {
+    func sendLeftValue(left: Int, title: String? = "")
+    {
+        self.leftTitleLabel.text = title
         self.leftTimerTotalSeconds = left
         self.viewWillAppear(true)
     }
     
-    func sendMiddleValue(middle: Int) {
+    func sendMiddleValue(middle: Int, title: String? = "")
+    {
+        self.middleTitleLabel.text = title
         self.middleTimerTotalSeconds = middle
         self.viewWillAppear(true)
     }
     
-    func sendRightValue(right: Int) {
+    func sendRightValue(right: Int, title: String? = "")
+    {
+        self.rightTitleLabel.text = title
         self.rightTimerTotalSeconds = right
         self.viewWillAppear(true)
     }
@@ -640,31 +665,6 @@ class MainTimerViewController: UIViewController, GetTimesDelegate
                 MiddleTimerController.sharedInstance.middleTimerProgressLine.hidden = true
                 RightTimerController.sharedInstance.rightTimerProgressLine.hidden = true})
     }
-
-    //func o()
-//    {
-//        var favoriteFillGrow = CATransform3DIdentity
-//        favoriteFillGrow = CATransform3DScale(favoriteFillGrow, 0.0, -0.0, -0.01)
-//        
-//        // 5. Fill Circle grows until reach the size of step 2 and shrink back to the initial size.
-//        let fillCircleAnimation = CAKeyframeAnimation(keyPath: "transform")
-//        
-//        let fillRingShape = LeftTimerController.sharedInstance.leftTimerProgressLine
-//        
-//        fillCircleAnimation.values = [
-//            NSValue(CATransform3D:fillRingShape.transform),
-//            NSValue(CATransform3D:favoriteFillGrow),
-//            NSValue(CATransform3D:CATransform3DIdentity)
-//        ]
-//        fillCircleAnimation.keyTimes = [0.0,0.4,0.6]
-//        fillCircleAnimation.duration = 3.0
-//        fillCircleAnimation.beginTime = CACurrentMediaTime() + 0.22
-//        fillCircleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-//
-//        
-//        fillRingShape.addAnimation(fillCircleAnimation, forKey: "fill circle Animation")
-//        fillRingShape.transform = CATransform3DIdentity
-//    }
     
 }
 

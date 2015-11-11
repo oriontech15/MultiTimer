@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RightTimer: NSObject {
+class RightTimer: NSObject, NSCoding {
     
     static let notificationSecondTick = "TimerNotificationSecondTick"
     static let notificationComplete = "TimerNotificationComplete"
@@ -25,6 +25,25 @@ class RightTimer: NSObject {
             }
         }
     }
+    
+    init(seconds: NSTimeInterval? = NSTimeInterval(1200))
+    {
+        self.seconds = seconds!
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder)
+    {
+        guard let seconds = aDecoder.decodeObjectForKey("rightSeconds") as? NSTimeInterval
+            else { return nil }
+        
+        self.init(seconds: seconds)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(self.seconds, forKey: "rightSeconds")
+    }
+    
     var string: String {
         get {
             let totalSeconds = Int(self.seconds)
